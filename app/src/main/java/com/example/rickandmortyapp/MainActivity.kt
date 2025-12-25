@@ -8,14 +8,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.rickandmortyapp.data.repository.CharacterRepositoryImpl
 import com.example.rickandmortyapp.ui.screen.CharacterListScreen
 import com.example.rickandmortyapp.ui.theme.RickAndMortyAppTheme
 import com.example.rickandmortyapp.ui.viewmodel.CharacterViewModel
+import org.koin.androidx.compose.koinViewModel
 
 /**
- * MainActivity - Usa repositorio del módulo data
+ * MainActivity - Ahora usa Koin para inyección de dependencias
  */
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,13 +26,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    // Crear ViewModel con repositorio manualmente (sin DI todavía)
-                    val repository = CharacterRepositoryImpl()
-                    val viewModel: CharacterViewModel = viewModel(
-                        factory = androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.getInstance(application)
-                    ) {
-                        CharacterViewModel(repository)
-                    }
+                    // Usar Koin para obtener el ViewModel
+                    val viewModel: CharacterViewModel = koinViewModel()
                     CharacterListScreen(viewModel = viewModel)
                 }
             }

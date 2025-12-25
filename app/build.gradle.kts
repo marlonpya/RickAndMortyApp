@@ -60,6 +60,11 @@ dependencies {
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.lifecycle.viewmodel.compose)
     
+    // Koin - Dependency Injection
+    implementation(libs.koin.android)
+    implementation(libs.koin.androidx.compose)
+    implementation(libs.koin.core)
+    
     // Image Loading
     implementation(libs.coil.compose)
     
@@ -68,6 +73,7 @@ dependencies {
     
     // Testing
     testImplementation(libs.junit)
+    testImplementation(libs.koin.test)
     
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
